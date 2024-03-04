@@ -3,23 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Rental System</title>
-    <!-- Include any external CSS files here -->
-    <link rel="stylesheet" href="static/css/style.css">
+    <title>View Tables</title>
 </head>
 <body>
-    <h1>Car Rental System</h1>
+    <h1>View Tables</h1>
     
-    <h2>Customers</h2>
-    <button onclick="fetchCustomers()">Load Customers</button>
-    <div id="customersList"></div>
+    <!-- Button to view cars table -->
+    <form action="/view_cars" method="get">
+        <button type="submit">View Cars Table</button>
+    </form>
 
-    <h2>Cars</h2>
-    <button onclick="fetchCars()">Load Cars</button>
-    <div id="carsList"></div>
+    <!-- Button to view customers table -->
+    <form action="/view_customers" method="get">
+        <button type="submit">View Customers Table</button>
+    </form>
 
-    <!-- Include any external JavaScript files here -->
-    <script src="static/js/scripts.js"></script>
+    <!-- Button to view locations table -->
+    <form action="/view_locations" method="get">
+        <button type="submit">View Locations Table</button>
+    </form>
+
+    <!-- Button to view owners table -->
+    <form action="/view_owners" method="get">
+        <button type="submit">View Owners Table</button>
+    </form>
+
+    <!-- Button to view picks_from table -->
+    <form action="/view_pickups" method="get">
+        <button type="submit">View Picks From Table</button>
+    </form>
+
+    <!-- Button to view reservations table -->
+    <form action="/view_reservations" method="get">
+        <button type="submit">View Reservations Table</button>
+    </form>
+
 </body>
 </html>
-    

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Customers</title>
+</head>
+<body>
+    <h1>Customers</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Phone</th>
+            <th>Address</th>
+        </tr>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.Cid }}</td>
+            <td>{{ customer.Cname }}</td>
+            <td>{{ customer.Mobile }}</td>
+            <td>{{ customer.Phone }}</td>
+            <td>{{ customer.Address }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

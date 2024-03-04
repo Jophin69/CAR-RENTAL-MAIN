@@ -3,45 +3,243 @@ import mysql.connector
 
 app = Flask(__name__)
 
-# Function to create a MySQL connection
-def create_connection():
-    return mysql.connector.connect(
-        host='localhost',
-        user='root',
-        password='jophin@69',
-        database='car_rental_system'
-    )
 
-# Route to fetch customers from the database
-@app.route('/fetch_customers')
-def fetch_customers():
-    try:
-        connection = create_connection()
-        cursor = connection.cursor(dictionary=True)
-        cursor.execute('SELECT * FROM Customers')
-        customers = cursor.fetchall()
-        cursor.close()
-        connection.close()
-        return render_template('fetchcustomers.html', customers=customers)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+# Connect to your MySQL server
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="jophin@69",
+    database="car_rental_system"
+)
 
-# Route to fetch cars from the database
-@app.route('/fetch_cars')
+# Create a cursor object
+cursor = conn.cursor()
+
+# Create cars table
+create_cars_table = """
+CREATE TABLE IF NOT EXISTS cars (
+    VIN varchar(20) PRIMARY KEY,
+    Model varchar(50),
+    Car_type varchar(50),
+    Colour varchar(20),
+    OwnerName varchar(50)
+)
+"""
+cursor.execute(create_cars_table)
+
+# Create customers table
+create_customers_table = """
+CREATE TABLE IF NOT EXISTS customers (
+    Cid int AUTO_INCREMENT PRIMARY KEY,
+    Cname varchar(50),
+    Phone varchar(20),
+    Mobile varchar(20),
+    Address varchar(100)
+)
+"""
+cursor.execute(create_customers_table)
+
+# Create locations table
+create_locations_table = """
+CREATE TABLE IF NOT EXISTS locations (
+    Loc_id int AUTO_INCREMENT PRIMARY KEY,
+    Address varchar(100)
+)
+"""
+cursor.execute(create_locations_table)
+
+# Create owners table
+create_owners_table = """
+CREATE TABLE IF NOT EXISTS owners (
+    Oname varchar(50) PRIMARY KEY,
+    Address varchar(100)
+)
+"""
+cursor.execute(create_owners_table)
+
+# Create picks_from table
+create_picks_from_table = """
+CREATE TABLE IF NOT EXISTS picks_from (
+    Pickup_id int AUTO_INCREMENT PRIMARY KEY,
+    Res_num int,
+    Loc_id int
+)
+"""
+cursor.execute(create_picks_from_table)
+
+create_reservation_table="""
+CREATE TABLE IF NOT EXISTS reservations (
+    Res_num INT AUTO_INCREMENT PRIMARY KEY,
+    Res_date DATE,
+    Cid INT,
+    VIN VARCHAR(20),
+    Loc_id INT
+)
+"""
+cursor.execute(create_reservation_table)
+
+# Commit changes and close connection
+conn.commit()
+conn.close()
+
+ 
+@app.route('/')
+def home():
+   return render_template('index.html')
 def fetch_cars():
     try:
-        connection = create_connection()
-        cursor = connection.cursor(dictionary=True)
-        cursor.execute('SELECT * FROM Cars')
+        conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="jophin@69",
+    database="car_rental_system"
+)
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM cars')
         cars = cursor.fetchall()
         cursor.close()
-        connection.close()
-        return render_template('fetchcars.html', cars=cars)
+        conn.close()
+        return cars
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
- 
+        print(f"An error occurred while fetching cars: {str(e)}")
+        return []
 
-# Add more routes for fetching Owners, Locations, Reservations, etc.
+# Route to view cars table
+@app.route('/view_cars')
+def view_cars():
+    cars = fetch_cars()
+    return render_template('viewcars.html', cars=cars)     
+
+def fetch_customers():
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="jophin@69",
+            database="car_rental_system"
+        )
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM customers')
+        customers = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return customers
+    except Exception as e:
+        print(f"An error occurred while fetching customers: {str(e)}")
+        return []
+
+# Route to view customers table
+@app.route('/view_customers')
+def view_customers():
+    customers = fetch_customers()
+    return render_template('view_customers.html', customers=customers)
+
+# Function to fetch locations
+def fetch_locations():
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="jophin@69",
+            database="car_rental_system"
+        )
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM locations')
+        locations = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return locations
+    except Exception as e:
+        print(f"An error occurred while fetching locations: {str(e)}")
+        return []
+
+# Function to fetch owners
+def fetch_owners():
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="jophin@69",
+            database="car_rental_system"
+        )
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM owners')
+        owners = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return owners
+    except Exception as e:
+        print(f"An error occurred while fetching owners: {str(e)}")
+        return []
+# Function to fetch pickups
+def fetch_pickups():
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="jophin@69",
+            database="car_rental_system"
+        )
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM picks_from')
+        pickups = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return pickups
+    except Exception as e:
+        print(f"An error occurred while fetching pickups: {str(e)}")
+        return []
+
+def fetch_reservations():
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="jophin@69",
+            database="car_rental_system"
+        )
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM reservations')
+        reservations = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return reservations
+    except Exception as e:
+        print(f"An error occurred while fetching reservations: {str(e)}")
+        return []
+
+# Route to view reservations
+@app.route('/view_reservations')
+def view_reservations():
+    reservations = fetch_reservations()
+    return render_template('view_reservations.html', reservations=reservations)
+
+
+# Route to view pickups
+@app.route('/view_pickups')
+def view_pickups():
+    pickups = fetch_pickups()
+    return render_template('view_pickups.html', pickups=pickups)
+
+
+# Route to view locations
+@app.route('/view_locations')
+def view_locations():
+    locations = fetch_locations()
+    return render_template('view_locations.html', locations=locations)
+
+# Route to view owners
+@app.route('/view_owners')
+def view_owners():
+    owners = fetch_owners()
+    return render_template('view_owners.html', owners=owners)
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
+    

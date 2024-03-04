@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
-    <title>Car List</title>
+    <title>View Cars Table</title>
 </head>
 <body>
-    <h1>Car List</h1>
-    <table>
+    <h1>Cars Table</h1>
+    <table border="1">
         <thead>
             <tr>
                 <th>VIN</th>
@@ -16,18 +15,16 @@
                 <th>Car Type</th>
                 <th>Colour</th>
                 <th>Owner Name</th>
-                <!-- Add more columns if needed -->
             </tr>
         </thead>
         <tbody>
             {% for car in cars %}
             <tr>
-                <td>{{ car['VIN'] }}</td>
-                <td>{{ car['Model'] }}</td>
-                <td>{{ car['Car_type'] }}</td>
-                <td>{{ car['Colour'] }}</td>
-                <td>{{ car['OwnerName'] }}</td>
-                <!-- Add more cells if needed -->
+                <td>{{ car.VIN }}</td>
+                <td>{{ car.Model }}</td>
+                <td>{{ car.Car_type }}</td>
+                <td>{{ car.Colour }}</td>
+                <td>{{ car.OwnerName }}</td>
             </tr>
             {% endfor %}
         </tbody>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Owners</title>
+</head>
+<body>
+    <h1>Owners</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+        {% for owner in owners %}
+        <tr>
+            <td>{{ owner.Oname }}</td>
+            <td>{{ owner.Address }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

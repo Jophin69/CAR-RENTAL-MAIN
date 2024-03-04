@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Pickups</title>
+</head>
+<body>
+    <h1>Pickups</h1>
+    <table border="1">
+        <tr>
+            <th>Pickup ID</th>
+            <th>Reservation Number</th>
+            <th>Location ID</th>
+        </tr>
+        {% for pickup in pickups %}
+        <tr>
+            <td>{{ pickup.Pickup_id }}</td>
+            <td>{{ pickup.Res_num }}</td>
+            <td>{{ pickup.Loc_id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

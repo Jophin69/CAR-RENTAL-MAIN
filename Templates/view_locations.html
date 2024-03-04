@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Locations</title>
+</head>
+<body>
+    <h1>Locations</h1>
+    <table border="1">
+        <tr>
+            <th>Location ID</th>
+            <th>Address</th>
+        </tr>
+        {% for location in locations %}
+        <tr>
+            <td>{{ location.Loc_id }}</td>
+            <td>{{ location.Address }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
