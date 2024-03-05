@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, redirect, render_template, request
 import mysql.connector
 
 app = Flask(__name__)
@@ -10,6 +10,7 @@ conn = mysql.connector.connect(
     user="root",
     password="jophin@69",
     database="car_rental_system"
+
 )
 
 # Create a cursor object
@@ -108,7 +109,7 @@ def fetch_cars():
 @app.route('/view_cars')
 def view_cars():
     cars = fetch_cars()
-    return render_template('viewcars.html', cars=cars)     
+    return render_template('viewcars.html', cars=cars) 
 
 def fetch_customers():
     try:
@@ -235,6 +236,33 @@ def view_owners():
     return render_template('view_owners.html', owners=owners)
 
 
+
+
+@app.route('/insert_cars', methods=['GET', 'POST'])
+def insert_cars():
+    if request.method == 'POST':
+        vin = request.form.get('vin')
+        model = request.form.get('model')
+        car_type = request.form.get('car_type')
+        colour = request.form.get('colour')
+        owner_name = request.form.get('owner_name')
+        
+        try:
+            conn = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="jophin@69",
+                database="car_rental_system"
+            )
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO cars (VIN, Model, Car_type, Colour, OwnerName) VALUES (%s, %s, %s, %s, %s)", (vin, model, car_type, colour, owner_name))
+            conn.commit()
+            conn.close()
+            return redirect('/view_cars')
+        except Exception as e:
+            print(f"An error occurred while inserting car: {str(e)}")
+    
+    return render_template('insert_cars.html')
 
 
 
