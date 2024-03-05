@@ -1,1 +1,2 @@
-INSERT INTO owners (Oname, Address) VALUES ('Joe', 'Mangalore');
+use car_rental_system
+select * from customers

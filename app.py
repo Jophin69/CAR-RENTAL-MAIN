@@ -265,6 +265,107 @@ def insert_cars():
     return render_template('insert_cars.html')
 
 
+@app.route('/insert_customers', methods=['GET', 'POST'])
+def insert_customers():
+    if request.method == 'POST':
+        cname = request.form.get('cname')
+        phone = request.form.get('phone')
+        mobile = request.form.get('mobile')
+        address = request.form.get('address')
+        
+        try:
+            conn = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="jophin@69",
+                database="car_rental_system"
+            )
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO customers (Cname, Phone, Mobile, Address) VALUES (%s, %s, %s, %s)", (cname, phone, mobile, address))
+            conn.commit()
+            conn.close()
+            return redirect('/view_customers')
+        except Exception as e:
+            print(f"An error occurred while inserting customer: {str(e)}")
+    
+    return render_template('insert_customers.html')
+
+
+# Route for inserting locations
+@app.route('/insert_locations', methods=['GET', 'POST'])
+def insert_locations():
+    if request.method == 'POST':
+        address = request.form.get('address')
+        
+        try:
+            conn = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="jophin@69",
+                database="car_rental_system"
+            )
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO locations (Address) VALUES (%s)", (address,))
+            conn.commit()
+            conn.close()
+            return redirect('/view_locations')
+        except Exception as e:
+            print(f"An error occurred while inserting location: {str(e)}")
+    
+    return render_template('insert_locations.html')
+
+# Route for inserting owners
+@app.route('/insert_owners', methods=['GET', 'POST'])
+def insert_owners():
+    if request.method == 'POST':
+        oname = request.form.get('oname')
+        address = request.form.get('address')
+        
+        try:
+            conn = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="jophin@69",
+                database="car_rental_system"
+            )
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO owners (Oname, Address) VALUES (%s, %s)", (oname, address))
+            conn.commit()
+            conn.close()
+            return redirect('/view_owners')
+        except Exception as e:
+            print(f"An error occurred while inserting owner: {str(e)}")
+    
+    return render_template('insert_owners.html')
+
+# Route for inserting reservations
+@app.route('/insert_reservations', methods=['GET', 'POST'])
+def insert_reservations():
+    if request.method == 'POST':
+        res_date = request.form.get('res_date')
+        cid = request.form.get('cid')
+        vin = request.form.get('vin')
+        loc_id = request.form.get('loc_id')
+        
+        try:
+            conn = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="jophin@69",
+                database="car_rental_system"
+            )
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO reservations (Res_date, Cid, VIN, Loc_id) VALUES (%s, %s, %s, %s)", (res_date, cid, vin, loc_id))
+            conn.commit()
+            conn.close()
+            return redirect('/view_reservations')
+        except Exception as e:
+            print(f"An error occurred while inserting reservation: {str(e)}")
+    
+    return render_template('insert_reservations.html')
+
+
+
 
 
 

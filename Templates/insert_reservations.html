@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Reservation</title>
+</head>
+<body>
+    <h1>Insert Reservation</h1>
+    <form method="post" action="/insert_reservations">
+        <label for="res_date">Reservation Date:</label><br>
+        <input type="date" id="res_date" name="res_date" required><br><br>
+        <label for="cid">Customer ID:</label><br>
+        <input type="text" id="cid" name="cid" required><br><br>
+        <label for="vin">Vehicle VIN:</label><br>
+        <input type="text" id="vin" name="vin" required><br><br>
+        <label for="loc_id">Location ID:</label><br>
+        <input type="text" id="loc_id" name="loc_id" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
