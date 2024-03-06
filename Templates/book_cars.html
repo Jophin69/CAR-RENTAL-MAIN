@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Cars</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: auto;
+            margin-top: 50px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="date"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Animation keyframes */
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .animation-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .animation {
+            animation: slideIn 1s ease;
+        }
+
+        /* Style for the return button */
+        .return-button {
+            display: block;
+            width: 100%;
+            background-color: #008CBA;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Cars</h1>
+    <form id="bookForm" method="POST">
+        <label for="res_date">Reservation Date:</label><br>
+        <input type="date" id="res_date" name="res_date" required><br><br>
+        
+        <label for="cid">Customer ID:</label><br>
+        <input type="text" id="cid" name="cid" required><br><br>
+        
+        <label for="vin">Car VIN:</label><br>
+        <select id="vin" name="vin" required>
+            {% for car in cars %}
+            <option value="{{ car.VIN }}">{{ car.Model }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="loc_id">Location ID:</label><br>
+        <select id="loc_id" name="loc_id" required>
+            {% for location in locations %}
+            <option value="{{ location.Loc_id }}">{{ location.Address }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <input type="submit" value="Book Car">
+    </form>
+
+    <!-- Animation container -->
+    <div class="animation-container" id="animationContainer">
+        <h2 class="animation">Car is Booked!</h2>
+    </div>
+
+    <!-- Return to Home button -->
+    <a href="{{ url_for('home') }}" class="return-button">Return to Home</a>
+    <script>
+        // Function to show the animation and hide the form
+        function showAnimation() {
+            var form = document.getElementById('bookForm');
+            var animationContainer = document.getElementById('animationContainer');
+    
+            // Hide the form
+            form.style.display = 'none';
+    
+            // Show the animation container
+            animationContainer.style.display = 'block';
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('bookForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+    
+                // Serialize form data
+                var formData = new FormData(form);
+    
+                // Send form data to server using fetch API
+                fetch('/book_cars', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.redirected) {
+                        window.location.href = response.url; // Redirect to view reservations page
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+    
+            // Listen for form submission
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+    
+                // Perform form submission using AJAX or other method
+                // Once the submission is successful, call the showAnimation function
+                // For example, you can use fetch API or XMLHttpRequest for AJAX submission
+    
+                // Simulating a successful submission for demonstration
+                setTimeout(function() {
+                    showAnimation();
+                }, 1000); // Adjust the delay as needed
+            });
+        });
+    </script>
+    
+</body>
+</html>

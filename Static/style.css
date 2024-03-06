@@ -1,57 +1,51 @@
-/* CSS code for styling the customers table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ddd;
-    margin-bottom: 20px; /* Add space between tables */
-    background-color: #ffffff; /* White background color for the table */
-    border-radius: 8px; /* Add rounded corners to the table */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd; /* Add bottom border to cells for separation */
-}
-
-th {
-    background-color: #f2f2f2;
-    border-top-left-radius: 8px; /* Rounded top left corner for header cells */
-    border-top-right-radius: 8px; /* Rounded top right corner for header cells */
-}
-
-/* Overall website styles */
 body {
-    font-family: Arial, sans-serif; /* Use a common font for better readability */
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-image: url('C:/Users/Jophi/OneDrive/Desktop/CAR RENTAL/wallpaperflare.com_wallpaper.jpg'); /* Add background image */
-    background-size: cover; /* Cover the entire viewport with the background image */
-}
-
-.container { 
-    max-width: 800px; 
-    margin: 0 auto; 
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* White background color with opacity */
-    border-radius: 10px; /* Add rounded corners to the container */
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 h1 {
-    text-align: center; /* Center-align headings for better presentation */
-    color: #333333; /* Dark text color for headings */
+    text-align: center;
+    color: #28587b;
+    margin-bottom: 25px;
 }
 
-button {
-    background-color: #007bff; 
-    color: white;
-    padding: 10px 20px; /* Increase padding for buttons */
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; /* Add a pointer cursor to buttons for better usability */
+form {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 0 auto; 
 }
 
-button:hover {
-    background-color: #0056b3; /* Change button color on hover for visual feedback */
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+select {
+    width: 100%; 
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+input[type="submit"] {
+    background-color: #28587b;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #1a3c52; 
 }

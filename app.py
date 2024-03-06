@@ -363,9 +363,34 @@ def insert_reservations():
             print(f"An error occurred while inserting reservation: {str(e)}")
     
     return render_template('insert_reservations.html')
-
-
-
+@app.route('/book_cars', methods=['GET', 'POST'])
+def book_cars():
+    if request.method == 'POST':
+        res_date = request.form.get('res_date')
+        cid = request.form.get('cid')
+        vin = request.form.get('vin')
+        loc_id = request.form.get('loc_id')
+        
+        try:
+            conn = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="jophin@69",
+                database="car_rental_system"
+            )
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO reservations (Res_date, Cid, VIN, Loc_id) VALUES (%s, %s, %s, %s)", (res_date, cid, vin, loc_id))
+            conn.commit()
+            conn.close()
+            
+        except Exception as e:
+            print(f"An error occurred while booking car: {str(e)}")
+    
+    # Fetch available cars and locations to display in the form
+    cars = fetch_cars()
+    locations = fetch_locations()
+    
+    return render_template('book_cars.html', cars=cars, locations=locations)
 
 
 

@@ -4,61 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAR RENTAL SYSTEM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/car1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        h1 {
+            margin-top: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 36px;
+            color: #fff;
+        }
+        .btn-section {
+            margin-top: 50px;
+        }
+        .btn-section h2 {
+            margin-bottom: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .btn-group form {
+            margin: 0 5px; /* Adjust the margin for equal spacing */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <h1>WELCOME TO CAR RENTAL SYSTEM</h1>
-    
-    <!-- Button to view cars table -->
-    <form action="/view_cars" method="get">
-        <button type="submit">View Cars Table</button>
-    </form>
 
-    <!-- Button to view customers table -->
-    <form action="/view_customers" method="get">
-        <button type="submit">View Customers Table</button>
-    </form>
+    <!-- Button section for viewing tables -->
+    <div class="btn-section">
+        <h2>View Tables</h2>
+        <div class="btn-group">
+            <!-- Buttons to view tables -->
+            <form action="/view_cars" method="get">
+                <button type="submit">View Cars Table</button>
+            </form>
+            <form action="/view_customers" method="get">
+                <button type="submit">View Customers Table</button>
+            </form>
+            <form action="/view_locations" method="get">
+                <button type="submit">View Locations Table</button>
+            </form>
+            <form action="/view_owners" method="get">
+                <button type="submit">View Owners Table</button>
+            </form>
+            <form action="/view_pickups" method="get">
+                <button type="submit">View Picks From Table</button>
+            </form>
+            <form action="/view_reservations" method="get">
+                <button type="submit">View Reservations Table</button>
+            </form>
+        </div>
+    </div>
 
-    <!-- Button to view locations table -->
-    <form action="/view_locations" method="get">
-        <button type="submit">View Locations Table</button>
-    </form>
+    <!-- Button section for inserting into tables -->
+    <div class="btn-section">
+        <h2>Insert into Tables</h2>
+        <div class="btn-group">
+            <!-- Buttons to insert into tables -->
+            <form action="/insert_cars" method="get">
+                <button type="submit">Insert into Cars Table</button>
+            </form>
+            <form action="/insert_customers" method="get">
+                <button type="submit">Insert into Customers Table</button>
+            </form>
+            <form action="/insert_locations" method="get">
+                <button type="submit">Insert into Location Table</button>
+            </form>
+            <form action="/insert_owners" method="get">
+                <button type="submit">Insert into Owners Table</button>
+            </form>
+            <form action="/insert_reservations" method="get">
+                <button type="submit">Insert into Reservations Table</button>
+            </form>
+        </div>
+    </div>
 
-    <!-- Button to view owners table -->
-    <form action="/view_owners" method="get">
-        <button type="submit">View Owners Table</button>
-    </form>
+    <!-- Button for booking cars -->
+    <div class="btn-section">
+        <h2>Book Cars</h2>
+        <div class="btn-group">
+            <!-- Button to book cars -->
+            <form action="/book_cars" method="get">
+                <button type="submit">Book Cars</button>
+            </form>
+        </div>
+    </div>
 
-    <!-- Button to view picks_from table -->
-    <form action="/view_pickups" method="get">
-        <button type="submit">View Picks From Table</button>
-    </form>
-
-    <!-- Button to view reservations table -->
-    <form action="/view_reservations" method="get">
-        <button type="submit">View Reservations Table</button>
-    </form>
-   <!-- Button to insert into cars table -->
-    <form action="/insert_cars" method="get">
-        <button type="submit">Insert into Cars Table</button>
-    </form>
-    <!-- Button to insert into customers table -->
-    <form action="/insert_customers" method="get">
-        <button type="submit">Insert into Customers Table</button>
-    </form>
-    <!-- Button to insert into locations table -->
-    <form action="/insert_locations" method="get">
-        <button type="submit">Insert into Location Table</button>
-    </form>
-    <!-- Button to insert into owners table -->
-    <form action="/insert_owners" method="get">
-        <button type="submit">Insert into Owners Table</button>
-    </form>
-    <!-- Button to insert into reservations table -->
-    <form action="/insert_reservations" method="get">
-        <button type="submit">Insert into Reservations Table</button>
-    </form>
-
-
+    <!-- Image section -->
+    <div>
+        <img src="/static/car1.jpg" width="800" height="450" alt="Car Image">
+    </div>
 </body>
 </html>
-    
