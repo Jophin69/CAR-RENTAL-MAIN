@@ -393,6 +393,31 @@ def book_cars():
     return render_template('book_cars.html', cars=cars, locations=locations)
 
 
+# Route for deleting reservations
+@app.route('/delete_reservation/<int:res_num>', methods=['POST'])
+def delete_reservation(res_num):
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="jophin@69",
+            database="car_rental_system"
+        )
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM reservations WHERE Res_num = %s", (res_num,))
+        conn.commit()
+        conn.close()
+        return redirect('/')
+    except Exception as e:
+        print(f"An error occurred while deleting reservation: {str(e)}")
+        return redirect('/view_reservations')  # Redirect to reservations page even if there's an error
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
